@@ -11,29 +11,26 @@ import {About} from './pages/About'
 import {Signup} from './pages/Signup'
 import {Routes,Route} from 'react-router-dom'
 
-
-import { Client, Account, Databases } from 'appwrite';
+import { Client, Account, Databases, Storage } from 'appwrite';
 
 function App() {
 
   const client = new Client()
-  client.setProject('64645db2622965d36e51')
+  client.setProject('6746c3630001c01c783e')
   client.setEndpoint('https://cloud.appwrite.io/v1')
 
   const account = new Account(client)
-  const database = new Database( client )
+  const database = new Databases( client )
+  const storage = new Storage(client)
 
   return (
     <>
-    <AuthContext.Provider value={ account }>
       <Header text="Wine Company" />
       <Routes>
-        <Route path='/' element={ <Home db={database} /> } />
+        <Route path='/' element={ <Home db={database} str={storage} /> } />
         <Route path="/about" element={ <About/> } />
         <Route path='/register' element={ <Signup/> } />
       </Routes>
-      </AuthContext.Provider>
-      
     </>
   )
 }
