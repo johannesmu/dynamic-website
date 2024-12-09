@@ -28,8 +28,8 @@ export function Home( props ) {
         // return each product as a Col
             // get preview of image
         const imgURL = storage.getFileView(
-            '6746d5f900370c213333', // bucket ID
-            p.image // file ID
+            '6746d5f900370c213333', // your bucket ID
+            p.image // file ID in database document
         )    
         return (
         <Col md={3}>
